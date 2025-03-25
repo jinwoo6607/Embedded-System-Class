@@ -34,3 +34,45 @@
 ![스크린샷 2025-03-25 111221](https://github.com/user-attachments/assets/14c64e03-620c-4914-920a-cfdd71efef04)
 ![스크린샷 2025-03-25 112155](https://github.com/user-attachments/assets/c7ed4def-e190-4d70-b82a-5f7cfde0c3b1)
 ![스크린샷 2025-03-25 112513](https://github.com/user-attachments/assets/74daecd2-2833-48bd-b6bc-310a736f6c37)
+
+// LED 핀 설정 (디지털 핀 6번부터 13번까지)
+int ledPins[] = {6, 7, 8, 9, 10, 11, 12, 13};
+int buttonPin = 2;  // 버튼 핀 (디지털 핀 2번)
+int counter = 0;    // 카운터 변수
+bool lastButtonState = HIGH;  // 마지막 버튼 상태 (풀업 상태로 시작)
+
+// 버튼을 누를 때마다 카운트를 증가시키는 함수
+void setup() {
+  // LED 핀들을 출력으로 설정
+  for (int i = 0; i < 8; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+
+  pinMode(buttonPin, INPUT_PULLUP);  // 버튼 핀을 풀업 모드로 설정
+}
+
+void loop() {
+  // 버튼 상태 읽기
+  bool buttonState = digitalRead(buttonPin);
+
+  // 버튼이 눌린 상태인지 확인 (낮은 상태)
+  if (buttonState == LOW && lastButtonState == HIGH) {
+    counter++;  // 카운터 증가
+    if (counter > 255) {  // 8비트 최대값을 초과하면 0으로 초기화
+      counter = 0;
+    }
+    delay(200);  // 버튼이 반복적으로 눌리지 않도록 잠시 대기
+  }
+
+  lastButtonState = buttonState;  // 마지막 버튼 상태 업데이트
+
+  // 8개의 LED로 2진수 표시
+  for (int i = 0; i < 8; i++) {
+    if (bitRead(counter, i)) {
+      digitalWrite(ledPins[i], HIGH);  // 해당 비트가 1이면 LED 켜기
+    } else {
+      digitalWrite(ledPins[i], LOW);   // 해당 비트가 0이면 LED 끄기
+    }
+  }
+}
+
