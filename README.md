@@ -16,7 +16,7 @@
 ![스크린샷 2025-03-25 094147](https://github.com/user-attachments/assets/505666e6-e101-477d-bc3b-030b91e1fd3d)
 ![스크린샷 2025-03-25 094213](https://github.com/user-attachments/assets/68607a9d-5cfd-48b1-8b90-12e327131907)
 
-[1~4주차.zip](https://github.com/user-attachments/files/19439838/1.4.zip)
+
 
 
 ![스크린샷 2025-03-25 105155](https://github.com/user-attachments/assets/eb882fda-f386-4ee7-8e9a-f6e5dd1b3e0c)
